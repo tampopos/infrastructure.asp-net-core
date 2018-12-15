@@ -5,7 +5,6 @@
     <PackageId>Tmpps.Infrastructure.AspNetCore</PackageId>
     <Authors>tampopos</Authors>
     <Company>tampopos</Company>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.2" />
