@@ -4,13 +4,8 @@ using Tmpps.Infrastructure.JsonWebToken.Interfaces;
 
 namespace Tmpps.Infrastructure.AspNetCore.Configuration.Interfaces
 {
-    public interface IWebConfig : IJwtConfig
+    public interface IMvcConfig
     {
-        bool IsEnableCors { get; }
-        bool UseAuthentication { get; }
-        bool IsUseSecure { get; }
-
-        IEnumerable<string> GetCorsOrigins();
         void CreateMvcConfigureRoutes(IRouteBuilder routes);
     }
 }

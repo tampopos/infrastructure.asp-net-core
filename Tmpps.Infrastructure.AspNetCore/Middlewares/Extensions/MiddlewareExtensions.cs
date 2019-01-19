@@ -1,6 +1,6 @@
 using System.Linq;
-using Tmpps.Infrastructure.AspNetCore.Configuration.Interfaces;
 using Microsoft.AspNetCore.Builder;
+using Tmpps.Infrastructure.AspNetCore.Configuration.Interfaces;
 
 namespace Tmpps.Infrastructure.AspNetCore.Middlewares.Extensions
 {
@@ -9,30 +9,31 @@ namespace Tmpps.Infrastructure.AspNetCore.Middlewares.Extensions
     /// </summary>
     public static class MiddlewareExtensions
     {
-        private static IApplicationBuilder UseRequestLogger(this IApplicationBuilder builder) => builder.UseMiddleware<RequestLoggerMiddleware>();
-        private static IApplicationBuilder UseIdentityContext<TClaim>(this IApplicationBuilder builder) => builder.UseMiddleware<ClaimContextMiddleware<TClaim>>();
-        public static IApplicationBuilder UseWebApiServiceMiddlewares<TClaim>(this IApplicationBuilder builder, IWebConfig config)
+        public static IApplicationBuilder UseRequestLogger(this IApplicationBuilder builder) => builder.UseMiddleware<RequestLoggerMiddleware>();
+
+        public static IApplicationBuilder UseCors<TClaim>(this IApplicationBuilder builder, ICorsConfig config)
         {
-            builder.UseMiddleware<RequestLoggerMiddleware>();
-            if (config.IsEnableCors)
+            builder.UseCors(option =>
             {
-                builder.UseCors(option =>
-                {
-                    option
-                        .WithOrigins(config.GetCorsOrigins().ToArray())
-                        .AllowAnyMethod()
-                        .AllowAnyHeader()
-                        .AllowCredentials();
-                });
-            }
-            if (config.UseAuthentication)
-            {
-                builder.UseAuthentication();
-                builder.UseIdentityContext<TClaim>();
-            }
+                option
+                    .WithOrigins(config.GetCorsOrigins().ToArray())
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials();
+            });
+            return builder;
+        }
 
+        public static IApplicationBuilder UseJwtAuthentication<TClaim>(this IApplicationBuilder builder)
+        {
+            builder.UseAuthentication();
+            builder.UseMiddleware<ClaimContextMiddleware<TClaim>>();
+            return builder;
+        }
+
+        public static IApplicationBuilder UseMvc<TClaim>(this IApplicationBuilder builder, IMvcConfig config)
+        {
             builder.UseMvc(config.CreateMvcConfigureRoutes);
-
             return builder;
         }
     }

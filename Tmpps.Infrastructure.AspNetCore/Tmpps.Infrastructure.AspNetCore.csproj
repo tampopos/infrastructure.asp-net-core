@@ -1,15 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
-    <PackageId>Tmpps.Infrastructure.AspNetCore</PackageId>
-    <Authors>tampopos</Authors>
-    <Company>tampopos</Company>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.2.0" />
-    <PackageReference Include="Tmpps.Infrastructure.Autofac" Version="2.0.1" />
-    <PackageReference Include="Tmpps.Infrastructure.JsonWebToken" Version="2.0.0" />
-  </ItemGroup>
+    <PropertyGroup>
+        <TargetFramework>netcoreapp2.2</TargetFramework>
+        <PackageId>Tmpps.Infrastructure.AspNetCore</PackageId>
+        <Authors>tampopos</Authors>
+        <Company>tampopos</Company>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.All" Version="2.2.1" />
+        <PackageReference Include="Tmpps.Infrastructure.Autofac" Version="2.0.1" />
+        <PackageReference Include="Tmpps.Infrastructure.JsonWebToken" Version="2.0.0" />
+    </ItemGroup>
 
 </Project>
