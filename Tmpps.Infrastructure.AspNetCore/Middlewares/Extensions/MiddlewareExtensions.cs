@@ -11,7 +11,7 @@ namespace Tmpps.Infrastructure.AspNetCore.Middlewares.Extensions
     {
         public static IApplicationBuilder UseRequestLogger(this IApplicationBuilder builder) => builder.UseMiddleware<RequestLoggerMiddleware>();
 
-        public static IApplicationBuilder UseCors<TClaim>(this IApplicationBuilder builder, ICorsConfig config)
+        public static IApplicationBuilder UseCors(this IApplicationBuilder builder, ICorsConfig config)
         {
             builder.UseCors(option =>
             {
@@ -31,7 +31,7 @@ namespace Tmpps.Infrastructure.AspNetCore.Middlewares.Extensions
             return builder;
         }
 
-        public static IApplicationBuilder UseMvc<TClaim>(this IApplicationBuilder builder, IMvcConfig config)
+        public static IApplicationBuilder UseMvc(this IApplicationBuilder builder, IMvcConfig config)
         {
             builder.UseMvc(config.CreateMvcConfigureRoutes);
             return builder;
